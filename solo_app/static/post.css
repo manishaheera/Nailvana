@@ -1,0 +1,264 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family:'Cutive Mono', monospace;
+    cursor: url('pictures/cursor1.gif'), auto;	
+}
+
+body{
+    background-size: cover;
+    background-image: url('pictures/wallpaper.png');
+}
+
+#wrapper{
+    padding:10px;
+    margin:0 auto;
+    width:850px;
+    background-color:rgb(255, 255, 255);
+    margin-top: 20px;
+    border: 8px solid #ffffff;
+	outline: 5px dashed #ffffff;
+}
+
+h2{
+    margin-top: 20px;
+    font-size: 30px;
+    background: -webkit-linear-gradient(#e2dae6, pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 350ms;
+}
+
+h2:hover{
+    background: -webkit-linear-gradient(#e8f7f7, rgb(233, 227, 228));
+    filter: drop-shadow(0.25rem 0 0.55rem rgb(245, 245, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header{
+    padding:10px;
+    display:flex;
+    justify-content: space-around;
+    align-items:center;
+    color:black;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.header p{
+    font-weight:bold;
+    font-size: larger;
+    margin-right:200px;
+}
+
+.header a{
+    text-decoration: none;
+    color:black;
+}
+
+.header a:hover{
+    background: linear-gradient(transparent,pink,rgb(233, 210, 233),rgb(209, 230, 237));
+}
+
+.profile_pic{
+margin-top: 20px;
+background-color: #ead6d7;
+display: inline-block;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border-color: 1px black;
+object-fit: cover;
+}
+
+#heart{
+    color:pink;
+}
+
+#heart:hover{
+    color:white;
+}
+
+#post_image{
+    margin-top: 10px;
+    height:500px;
+    width:400px;
+    display:inline-block;
+    transition: all 0.3s ease-out;
+	position: relative;
+	z-index: 2;
+}
+
+#post_image:hover{
+    transform: scale(1.4, 1.4);
+	z-index: 9;
+    image-rendering: pixelated;
+}
+
+#user{
+    text-decoration: none;
+    color:black
+}
+
+#author{
+    transition: 350ms;
+}
+
+#author:hover{
+    color:white;
+    filter: drop-shadow(0.25rem 0 0.75rem black);
+}
+
+.message_scroll{
+    height:125px;
+    width:420px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(transparent,white);
+    border-radius: 6px; 
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent,pink,rgb(233, 210, 233),rgb(209, 230, 237));
+}
+
+.messages{
+    font-weight: bolder;
+    list-style-type: none;
+}
+
+#post_container{
+    display:flex;
+}
+
+.content{
+    padding:10px;
+}
+
+.message_box {
+padding:10px;
+width:430px;
+height:305px;
+background:linear-gradient( -80deg,#eedbee 15%,#ebf1f5 35%, #e2dae6);
+animation : animate 5s linear infinite;
+}
+@keyframes animate
+{
+    65% 
+{
+filter: hue-rotate(20deg);
+}
+    90% 
+{
+filter: hue-rotate(40deg);
+}
+}
+
+.message_box::after{
+    content:"";
+    display:block;
+    position:absolute;
+    left:45px;
+    bottom:-10px;
+    border-bottom:10px solid transparent;
+    border-right:25px solid transparent;
+    border-left:25px solid #ede1e5;
+}
+
+#caption_update, .delete{
+    font-size: smaller;
+    color:white;
+    filter: drop-shadow(0.25rem 0 0.75rem black);
+    text-decoration: none;
+}
+
+h2{
+    margin-bottom: 20px;;
+}
+
+p{  
+    display:inline-block;
+    font-size: 20px;
+}
+
+.edit_input{
+    height:20px;
+    width:400px;
+    padding:10px;
+}
+
+#comment_form{
+    margin-top: 20px;
+}
+
+#comment_input{
+    padding:10px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    height:20px;
+    width:405px;
+}
+
+button{
+    margin-left:300px;
+    border-style: none;
+    background-color: pink;
+    padding:10px;
+    margin-top:10px;
+    display:block;
+}
+
+button:hover{
+    border-style: none;
+    padding:13px;
+    color:#ffffff;
+    filter: drop-shadow(0.25rem 0 0.75rem pink);
+    transition: 350ms;
+}
+
+.comment_container{
+    height:500px;
+    width:830px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-bottom: 20px;
+}
+
+#ind_comment{
+    display:inline-block;
+    margin-bottom: 20px;
+}
+
+#ind_comment a{
+    text-decoration: none;
+    font-weight: bolder;
+    color:pink;
+}
+
+.user, #author{
+    font-weight: bolder;
+}
+
+.comment_pic{
+margin-bottom:-5px;
+background-color: #ead6d7;
+display: inline-block;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+border-color: 1px black;
+object-fit: cover;
+}
+
+.error{
+    color: rgb(227, 194, 227);
+    font-weight: bolder;
+    }

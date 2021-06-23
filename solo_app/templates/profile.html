@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailvana</title>
+</head>
+
+<body>
+
+    <div id ="wrapper">
+        <img src="{% static 'pictures/bird.gif' %}" id="bird" class="bird">
+
+        {% if user != user_signed_in %}
+        <h2>{{user.first_name}} {{user.last_name}}'s Profile</h2>
+        {% else %}
+        <h2>Your Profile</h2>
+        {% endif %}
+
+        <div class="header">
+            <img src="/media/{{user.profile_pic}}" id="profile_pic">
+            {% if user == user_signed_in %}
+            <a href="/dashboard/user/profile/{{user.id}}/edit">Edit Profile</a>
+            {% endif %}
+            <a href="/dashboard">NailGrid</a>
+            <a href="/logoff">Log Out</a>
+        </div>
+
+        <p class="about">{{user.bio}}</p>
+        <p class="label"> {{user.user_messages.count}} Posts </p>
+        {% for message in all_messages reversed %}
+            {% if user == message.user_posting %}
+        <div id="row">
+            <div class="column">
+                <a href="/dashboard/posts/{{message.id}}"><img src="/media/{{message.message_image}}" id="post_image"></a> <br>
+                {% if message in user_liked %}
+                <span> &#9829;</span> {{message.liked_by.count}} 
+                {% else %}
+                <span> &#9825;</span> {{message.liked_by.count}} 
+                {% endif %}
+                <img src="{% static 'pictures/cap.png' %}" id="cap"/> {{message.message_comments.count}} 
+            </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+        <br>
+
+        <p class="label">Liked Posts</p>
+        {% for message in user_liked reversed %}
+        <div id="row">
+            
+            <div class="column">
+                <a href="/dashboard/posts/{{message.id}}"><img src="/media/{{message.message_image}}" id="post_image"></a> <br>
+                {% if message in liked_by_user_signed_in %}
+                <span> &#9829;</span> {{message.liked_by.count}} 
+                {% else %}
+                <span> &#9825;</span> {{message.liked_by.count}} 
+                {% endif %}
+                <img src="{% static 'pictures/cap.png' %}" id="cap"/> {{message.message_comments.count}} 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

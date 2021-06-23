@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'post.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailvana</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="header">
+            {% if message in user_not_liked %}
+            <a href="/dashboard/posts/{{message.id}}/like" id="fav">
+            <span id="heart">&#9829;Like</span></a>
+            {% else %}
+            <a href="/dashboard/posts/{{message.id}}/unlike" id="fav">
+            <span id="heart">&#9825;Unlike</span></a>
+            {% endif %}
+            <a href="/dashboard"> NailGrid</a>
+            <a href="/dashboard/user/profile/{{user.id}}"> Profile</a>
+            <a href="/logoff">Log Out</a>
+        </div>
+
+        <div id="post_container">
+            <img src="/media/{{message.message_image}}" id="post_image"><br> 
+
+            <div class="content">
+                <div class = "message_box">
+                    <div class="message_scroll">
+                    {{message.message}}<br>
+                    </div>
+                <img src="/media/{{message.user_posting.profile_pic}}" class="profile_pic">
+                <a href = "/dashboard/user/profile/{{message.user_posting.id}}" id="user">
+                <p><span id="author">{{message.user_posting.first_name}} {{message.user_posting.last_name}}</span></p></a><br>
+                {{message.created_at}} 
+
+                {% if message.user_posting == user %}
+                <a href="/dashboard/posts/{{message.id}}/destroy" onclick="return confirm('Are you sure you want to delete your post?');" class='delete'> Delete Post?</a>
+                <form action="/dashboard/posts/{{message.id}}/edit" method="post" id="edit_form" enctype="multipart/form-data">
+                {% csrf_token %} 
+                <p id= "caption_update">Update Caption</p>
+                <input type="text" name="message" class="edit_input">
+                <button>Update</button>
+                </form>
+                {% endif %}
+                </div>
+
+        {% if messages %}
+        <p class="error">PSST...</p>
+        <ul class="messages">    
+            {% for message in messages %}    
+            <li>{{ message }}</li>  
+            {% endfor %}
+        </ul>
+        {% endif %}
+            
+        <form action="/dashboard/posts/{{message.id}}/comment/new" method="post" id="comment_form">
+        {% csrf_token %} 
+        Add Comment
+        <input type="text" name="comment" id="comment_input">
+        <button>Comment</button>
+        </form>
+        </div>
+        </div>
+
+        <h2>Comments</h2>
+        {% for comment in message.message_comments.all reversed %}
+            {% if comment.comment %}
+            <div class ='comment_container'>
+                <div id="ind_comment">
+                    <img src="/media/{{comment.user_posting.profile_pic}}" class="comment_pic"> 
+                    <p class="user">
+                    <a href="/dashboard/user/profile/{{comment.user_posting.id}}" id="comment_user">{{comment.user_posting.first_name}}  {{comment.user_posting.last_name}}:</a></p>
+                    "{{comment.comment}}" <br>
+                    ({{comment.user_posting.created_at}})
+                    {% if user == comment.user_posting %}
+                    <a href="/dashboard/posts/{{comment.id}}/comment/destroy">Delete</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+        {% endfor %}
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

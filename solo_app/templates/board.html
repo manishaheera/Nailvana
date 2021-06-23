@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'nailgrid.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailvana Nail Grid</title>
+</head>
+
+<body>
+    <div id ="wrapper">
+        <img src="{% static 'pictures/bird3.png' %}" id="bird2" class="bird2">
+        <h2>The Nail Grid <img src="{% static 'pictures/hand.jpg' %}" id="hand"/></h2>
+
+        <div class="header">
+            <a href="/dashboard/user/profile/{{user_signed_in.id}}/edit" id="display_pic"><img src="/media/{{user_signed_in.profile_pic}}" id="profile_pic"></a>
+    
+            <p>Welcome, {{user_signed_in.first_name}} {{user_signed_in.last_name}}</p>
+            <a href="/dashboard/user/profile/{{user_signed_in.id}}" class='link'>Profile</a>
+            <a href="/logoff" class="link">Log Out</a>
+        </div>
+
+        {% if messages %}
+        <p class="error">PSST...</p>
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li>{{ message }}  </li>  
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form action="/dashboard/posts/create" method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <input type="text" name="message">
+        <input type="file" name="image">
+        <button>Post</button>
+        </form>
+
+        {% for message in all_messages reversed %}
+        <div id="row">
+            <div class="column">
+                <a href="/dashboard/posts/{{message.id}}"><img src="/media/{{message.message_image}}" id="post_image"></a><br>
+                {% if message in user_liked %}
+                <a href="/dashboard/posts/{{message.id}}/unlike" id="fav"><span> &#9829;</span></a> {{message.liked_by.count}} 
+                {% else %}
+                <a href="/dashboard/posts/{{message.id}}/like" id="fav"><span> &#9825;</span></a> {{message.liked_by.count}} 
+                {% endif %}
+                <img src="{% static 'pictures/cap.png' %}" id="cap"/> {{message.message_comments.count}} 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

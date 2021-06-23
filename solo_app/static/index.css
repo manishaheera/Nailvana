@@ -1,0 +1,208 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family:'Cutive Mono', monospace;
+    cursor: url('pictures/cursor1.gif'), auto;	
+}
+
+body{
+    background-size: cover;
+    background-image: url('pictures/wallpaper.png');
+    width:100%;
+    position:absolute;
+}
+
+#wrapper{
+    padding:0px;
+    margin:0 auto;
+    width:850px;
+    background-color:rgb(255, 255, 255);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+::-webkit-scrollbar{
+    width:12px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(transparent,white);
+    border-radius: 6px; 
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(transparent,pink,rgb(233, 210, 233),rgb(209, 230, 237));
+}
+
+#cloud_photo{
+    background-color: #f1e4f4;
+    width:850px;
+    height:200px;
+}
+
+.error{
+color: rgb(227, 194, 227);
+font-weight: bolder;
+}
+
+#entire_content{
+    padding:10px;
+}
+
+#forms{
+    width:830px;
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.form{
+    margin:20px 0px 20px 0px;
+    padding:20px;
+}
+
+input{
+    padding:10px;
+    margin-bottom: 10px;
+    height:20px;
+    width:350px;
+}
+
+input:hover{
+    filter: drop-shadow(0.25rem 0 0.45rem pink);
+}
+
+span{
+    position: relative;
+    font-size: 90px;
+    font-family: 'Leckerli One', cursive;
+    background: -webkit-linear-gradient(#e2dae6, pink);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+span::before{
+    content: attr(data-text);
+    background: -webkit-linear-gradient(#e8f7f7, rgb(233, 227, 228));
+    filter: drop-shadow(0.25rem 0 0.55rem rgb(245, 245, 239));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate 7s linear infinite;
+    position:absolute;
+    top: 0;
+    left:0;
+    width:0;
+    height:100%;
+    overflow:hidden;
+    -webkit-text-stroke: 3px rgb(223, 214, 221);
+}
+
+@keyframes animate{
+    0%,5%,100%
+    {
+        width:0;
+    }
+    70%,90%
+    {
+        width:100%;
+    }
+}
+
+h1{
+    font-weight: 10;
+    font-size: 30px;
+    margin-bottom: 30px;
+    background: linear-gradient(transparent,pink,rgb(233, 210, 233),rgb(209, 230, 237));
+    opacity: 0.3;
+    border-radius: 5px;
+    padding: 1px;
+}
+
+p{
+    margin-bottom: 10px;
+}
+
+button{
+    border-style: none;
+    background-color: pink;
+    padding:10px;
+    margin-top:10px;
+    display:block;
+    transition: 350ms;
+}
+
+button:hover{
+    border-style: none;
+    padding:13px;
+    color:#ffffff;
+    filter: drop-shadow(0.25rem 0 0.75rem pink);
+}
+
+.messages{
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+footer{
+    color:white;
+    padding:0px;
+    margin:0 auto;
+    width:830px;
+    background-color:rgb(211, 211, 211);
+    padding:10px;
+    margin-bottom:20px;
+}
+
+#logo{
+    height:20px;
+    width:20px;
+}
+
+#hand{
+    height:100px;
+    opacity: 0.6;
+}
+
+#bird_container{
+    background-color: #f0e4f4;
+    height:20%;
+    width:100%;
+}
+
+.bird1,.bird2{
+    position: relative;
+}
+
+#bird2{
+    height:100px;
+    animation:fly 3.5s ease-in-out;
+    left:-30px;
+    top:102px;
+}
+
+#bird{
+    left:100%;
+    height:150px;
+    animation:fly 4.0s ease-in-out;
+    left:-30px;
+    top:102px;
+}
+
+@keyframes fly{
+    0%{
+        left:100%;
+        top: 5px;
+    }
+    25%{
+        top:100px;
+    }
+    50%{
+        top:80px;
+    }
+    75%{
+        top: 25px;
+    }
+    100%{
+        left:-30px;
+        top:102px;
+    }
+}

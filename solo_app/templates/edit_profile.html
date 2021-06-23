@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'edit_pro.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nailvana</title>
+</head>
+
+<body>
+    <div id ="wrapper">
+    <h2>Edit Profile</h2>
+        <div class="header">
+            <img src="/media/{{user.profile_pic}}" id="profile_pic">
+            <a href="/dashboard/user/profile/{{user.id}}">Profile</a>
+            <a href="/dashboard">NailGrid</a>
+            <a href="/logoff">Log Out</a>
+        </div>
+
+    {% if messages %}
+    <p class="error">PSST...</p>
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li>{{ message }}</li>  
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/dashboard/user/profile/{{user.id}}/update" method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    <span>Update Profile Picture:</span> 
+    <input type="file" name="pro_pic" value="media/{{user.profile_pic}}"><br>
+    <span>Update Bio:</span>
+    <input type="text" name="bio" value="{{user.bio}}">
+    <button>Post</button>
+    </form>
+    <a href="/dashboard/user/profile/{{user.id}}/destroy" onclick="return confirm('Are you sure you want to delete your account? :-(');" id="delete_link">Delete Account? </a>
+    </div>
+</body>
+</html>

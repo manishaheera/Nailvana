@@ -62,6 +62,7 @@ h2:hover{
 }
 
 .profile_pic{
+object-fit: cover;
 margin-top: 20px;
 background-color: #ead6d7;
 display: inline-block;
@@ -81,6 +82,7 @@ object-fit: cover;
 }
 
 #post_image{
+    object-fit: cover;
     margin-top: 10px;
     height:500px;
     width:400px;
@@ -248,6 +250,7 @@ button:hover{
 }
 
 .comment_pic{
+object-fit: cover;
 margin-bottom:-5px;
 background-color: #ead6d7;
 display: inline-block;

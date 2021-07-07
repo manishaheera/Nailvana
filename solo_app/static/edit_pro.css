@@ -75,6 +75,7 @@ h2:hover{
 }
 
 #profile_pic{
+object-fit: cover;
 margin-top:-50px;
 background: linear-gradient(transparent,pink,rgb(233, 210, 233),rgb(209, 230, 237));
 display: inline-block;
